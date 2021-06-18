@@ -30,7 +30,7 @@ public class BrowserUtilities {
             }
             driver.manage().window().maximize();
             driver.get(appURL);
-            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             return driver;
         }
         else {
