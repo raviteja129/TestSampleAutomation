@@ -31,7 +31,7 @@ public class BaseClass {
     static Logger logger = LogManager.getLogger(BaseClass.class);
 
     @BeforeSuite
-    public void setUpSuite() {
+    public void setUpSuite() throws MalformedURLException {
         configUtilities = new ConfigUtilities();
         excelUtilities = new ExcelUtilities();
         File reportDirPath = new File(System.getProperty("user.dir") + "/target/reports");
@@ -54,7 +54,6 @@ public class BaseClass {
         extent.setSystemInfo("OS", System.getProperty("os.name"));
         extent.setSystemInfo("ExecutedBy", excelUtilities.getStringData("LoginData" ,0,0));
         extent.setSystemInfo("Browser", configUtilities.getBrowserConfig());
-
     }
 
     @BeforeClass
