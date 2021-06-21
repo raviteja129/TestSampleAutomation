@@ -29,9 +29,7 @@ public class LoginPage {
             e.printStackTrace();
         }
         userName.sendKeys(uname);
-        logger.info("Username" + uname + " entered");
         password.sendKeys(upass);
-        logger.info("Username" + upass + " entered");
         loginButton.click();
         logger.info("Button clicked");
     }
