@@ -9,10 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 import utilities.BrowserUtilities;
 import utilities.ConfigUtilities;
 import utilities.ExcelUtilities;
@@ -37,15 +34,15 @@ public class BaseClass {
         File reportDirPath = new File(System.getProperty("user.dir") + "/target/reports");
         if (!reportDirPath.exists()) {
             reportDirPath.mkdir();
-            reporter = new ExtentHtmlReporter(new File(reportDirPath+ "/FreeLogin" + HelperUtilities.getDateTimeStamp() +".html"));
+            reporter = new ExtentHtmlReporter(new File(reportDirPath+ "/FreeHRM.html"));
             reporter.config().setDocumentTitle("Orange HRM Automation Report");
-            reporter.config().setReportName("Functional Report");
+            reporter.config().setReportName("HRM Automation Report");
             reporter.config().setTheme(Theme.DARK);
         }
         else {
-            reporter = new ExtentHtmlReporter(new File(reportDirPath+ "/FreeLogin" + HelperUtilities.getDateTimeStamp() +".html"));
+            reporter = new ExtentHtmlReporter(new File(reportDirPath+ "/FreeHRM.html"));
             reporter.config().setDocumentTitle("Orange HRM Automation Report");
-            reporter.config().setReportName("Functional Report");
+            reporter.config().setReportName("HRM Automation Report");
             reporter.config().setTheme(Theme.DARK);
         }
         extent = new ExtentReports();
@@ -56,9 +53,10 @@ public class BaseClass {
         extent.setSystemInfo("Browser", configUtilities.getBrowserConfig());
     }
 
+    @Parameters("browser")
     @BeforeClass
-    public void setUp() throws MalformedURLException {
-        driver = BrowserUtilities.startApp(configUtilities.getExecution(), configUtilities.getBrowserConfig(),configUtilities.getURLConfig());
+    public void setUp(String browser) {
+        driver = BrowserUtilities.startApplication(driver, configUtilities.getExecution(), browser,configUtilities.getURLConfig());
         logger.trace("Trace Message");
         logger.info("Start of the Application");
     }

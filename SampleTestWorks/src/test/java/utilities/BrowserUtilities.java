@@ -13,8 +13,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserUtilities {
-    public static WebDriver startApp(String executionType, String browserName, String appURL) throws MalformedURLException {
-        WebDriver driver = null;
+    public static WebDriver startApplication(WebDriver driver, String executionType, String browserName, String appURL) {
 
         if(executionType.contains("local") || executionType.contains("LOCAL") ) {
             if (browserName.contains("Chrome") || browserName.contains("CHROME")  || browserName.contains("chrome")) {
@@ -37,11 +36,19 @@ public class BrowserUtilities {
             if (browserName.contains("CHROME") || browserName.contains("Chrome") || browserName.contains("chrome")) {
                 DesiredCapabilities cap = new DesiredCapabilities();
                 cap.setBrowserName(BrowserType.CHROME);
-                driver = new RemoteWebDriver(new URL("http://localhost:4545/wd/hub"), cap);
+                try {
+                    driver = new RemoteWebDriver(new URL("http://localhost:4545/wd/hub"), cap);
+                } catch (MalformedURLException e) {
+                    System.out.println(e.getMessage());
+                }
             } else if (browserName.contains("FIREFOX") || browserName.contains("Firefox") || browserName.contains("firefox")) {
                 DesiredCapabilities cap = new DesiredCapabilities();
                 cap.setBrowserName(BrowserType.CHROME);
-                driver = new RemoteWebDriver(new URL("http://localhost:4545/wd/hub"), cap);
+                try {
+                    driver = new RemoteWebDriver(new URL("http://localhost:4545/wd/hub"), cap);
+                } catch (MalformedURLException e) {
+                    System.out.println(e.getMessage());
+                }
             } else {
                 System.out.println("Check the drivers availability to initiate the browser");
             }

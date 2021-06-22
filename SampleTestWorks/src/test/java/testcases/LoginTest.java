@@ -4,6 +4,7 @@ import com.aventstack.extentreports.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.BaseClass;
 import pages.LoginPage;
